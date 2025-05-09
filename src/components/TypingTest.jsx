@@ -147,7 +147,36 @@ const TypingTest = () => {
 		lastSecondErrors,
 		testSettings,
 	]);
+	const saveTypingTest = async (
+		wpm,
+		accuracy,
+		consistency,
+		rawWpmData,
+		errorPoints
+	) => {
+		if (!auth.currentUser) {
+			console.error("No user is signed in.");
+			return;
+		}
 
+		const userId = auth.currentUser.uid;
+
+		try {
+			await addDoc(collection(db, "typingTests", userId, "sessions"), {
+				wpm,
+				accuracy,
+				consistency,
+				rawWpmData,
+				errorPoints,
+				timestamp: new Date(),
+				completed: true, // Assuming the test is completed
+				time: (Date.now() - startTime) / 1000, // Total time in seconds
+			});
+			console.log("Typing test data saved successfully!");
+		} catch (error) {
+			console.error("Error saving typing test:", error);
+		}
+	};
 	useEffect(() => {
 		if (isTestComplete) {
 			const meanRawWpm =
@@ -160,7 +189,7 @@ const TypingTest = () => {
 			setConsistency(consistency);
 			saveTypingTest(wpm, accuracy, consistency, rawWpmData, errorPoints);
 		}
-	}, [isTestComplete, rawWpmData]);
+	}, [isTestComplete, rawWpmData, wpm, accuracy, errorPoints, saveTypingTest]);
 
 	useEffect(() => {
 		let timerInterval;
@@ -338,37 +367,6 @@ const TypingTest = () => {
 				borderJoinStyle: "round",
 			},
 		},
-	};
-
-	const saveTypingTest = async (
-		wpm,
-		accuracy,
-		consistency,
-		rawWpmData,
-		errorPoints
-	) => {
-		if (!auth.currentUser) {
-			console.error("No user is signed in.");
-			return;
-		}
-
-		const userId = auth.currentUser.uid;
-
-		try {
-			await addDoc(collection(db, "typingTests", userId, "sessions"), {
-				wpm,
-				accuracy,
-				consistency,
-				rawWpmData,
-				errorPoints,
-				timestamp: new Date(),
-				completed: true, // Assuming the test is completed
-				time: (Date.now() - startTime) / 1000, // Total time in seconds
-			});
-			console.log("Typing test data saved successfully!");
-		} catch (error) {
-			console.error("Error saving typing test:", error);
-		}
 	};
 
 	return (

@@ -1,4 +1,3 @@
-// filepath: /c:/Users/Metal/OneDrive/Documents/Coding/MMC Code/rhino-type/src/app/contact/page.tsx
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -6,11 +5,10 @@ import GithubIcon from "../../../public/github-icon.svg";
 import Link from "next/link";
 import Image from "next/image";
 import { Navbar } from "@/components/Navbar";
-import ThemeSwitcher from "@/components/ThemeSwitcher";
 
 const Contact = () => {
 	const [emailSubmitted, setEmailSubmitted] = useState(false);
-	const [currentTheme, setCurrentTheme] = useState("light"); // Default theme
+	const [currentTheme] = useState("light"); // Default theme
 
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();

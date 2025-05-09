@@ -19,10 +19,10 @@ const ThemeSwitcher = () => {
 		setDropdownOpen(false); // Close dropdown
 	};
 
-	const toggleTheme = () => {
-		const newTheme = currentTheme === "light" ? "dark" : "light";
-		setCurrentTheme(newTheme);
-	};
+	// const toggleTheme = () => {
+	// 	const newTheme = currentTheme === "light" ? "dark" : "light";
+	// 	setCurrentTheme(newTheme);
+	// };
 
 	return (
 		<div className="relative inline-block">

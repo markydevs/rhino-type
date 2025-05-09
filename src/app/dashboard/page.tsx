@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { collection, getDocs, query, where } from "firebase/firestore";
+import { collection, getDocs, query } from "firebase/firestore";
 import { db, auth } from "../../firebase/index.js";
 import { Navbar } from "../../components/Navbar";
 import { Line } from "react-chartjs-2";
@@ -29,8 +29,19 @@ ChartJS.register(
 	Filler
 );
 
+type TypingTestSession = {
+	id: string;
+	timestamp: { seconds: number }; // Or use Firebase Timestamp type if imported
+	wpm: number;
+	rawWpm: number;
+	accuracy: number;
+	consistency: number;
+	time?: number;
+	completed?: boolean;
+};
+
 const Dashboard: React.FC = () => {
-	const [data, setData] = useState<any[]>([]);
+	const [data, setData] = useState<TypingTestSession[]>([]);
 	const [loading, setLoading] = useState(true);
 	const [user, setUser] = useState<User | null>(null);
 
@@ -55,11 +66,18 @@ const Dashboard: React.FC = () => {
 				const q = query(userDocRef);
 				const querySnapshot = await getDocs(q);
 				const dataList = querySnapshot.docs.map((doc) => {
-					console.log("Document data:", doc.data());
+					const docData = doc.data();
+					console.log("Document data:", docData);
 					return {
 						id: doc.id,
-						...doc.data(),
-					};
+						timestamp: docData.timestamp,
+						wpm: docData.wpm,
+						rawWpm: docData.rawWpm,
+						accuracy: docData.accuracy,
+						consistency: docData.consistency,
+						time: docData.time,
+						completed: docData.completed,
+					} as TypingTestSession;
 				});
 				console.log("Fetched data:", dataList);
 				setData(dataList);
