@@ -1,0 +1,70 @@
+/* Typing Test Component Styling */
+.typing-test {
+	padding: 2rem;
+	line-height: 1.8;
+	font-family: monospace;
+	/* background-color: #1e1e1e; */
+	/* color: #fff; */
+	font-size: 1.5rem;
+	border-radius: 8px;
+	margin: 2rem auto;
+}
+
+.typing-test .text {
+	position: relative;
+	display: inline-block;
+}
+
+.typing-test .text span.correct {
+	color: #00ff00; /* Correct letters in green */
+}
+
+.typing-test .text span.incorrect {
+	color: #ff0000; /* Incorrect letters in red */
+	text-decoration: underline;
+}
+
+.typing-test .text span {
+	position: relative;
+	/* color: #fff; */
+}
+
+.typing-test .text span.last-child::before {
+	content: "";
+	position: absolute;
+	left: -2px; /* Adjust for exact alignment */
+	top: 0;
+	width: 0.1em;
+	height: 1.5rem; /* Matches the line height */
+	/* background-color: #e2b714; White caret */
+	animation: cursorBlink 1s steps(1) infinite;
+	border-radius: 0.5rem;
+}
+
+/* Blinking animation */
+@keyframes cursorBlink {
+	0%,
+	to {
+		opacity: 0;
+	}
+
+	50% {
+		opacity: 1;
+	}
+}
+
+/* Stop blinking when typing */
+.typing-test .text span.last-child.typing::before {
+	animation: none;
+}
+
+/* Idle state: When typing stops */
+.typing-test .text span.last-child.idle::before {
+	opacity: 0.5;
+	animation: cursorBlink 1s steps(1) infinite;
+}
+
+.stats {
+	display: flex;
+	column-gap: 1rem;
+}

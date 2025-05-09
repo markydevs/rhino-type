@@ -1,0 +1,96 @@
+:root {
+	--color-wpm: rgba(75, 192, 192, 1);
+	--color-wpm-bg: rgba(75, 192, 192, 0.2);
+	--color-accuracy: rgba(153, 102, 255, 1);
+	--color-accuracy-bg: rgba(153, 102, 255, 0.2);
+	--color-consistency: rgba(255, 159, 64, 1);
+	--color-consistency-bg: rgba(255, 159, 64, 0.2);
+	--color-errors: #ca4754;
+}
+
+[data-theme="dark"] {
+	--color-wpm: rgba(125, 125, 255, 0.75);
+	--color-wpm-bg: rgba(125, 125, 255, 0.2);
+	--color-accuracy: rgba(102, 102, 255, 1);
+	--color-accuracy-bg: rgba(102, 102, 255, 0.2);
+	--color-consistency: rgba(255, 102, 102, 1);
+	--color-consistency-bg: rgba(255, 102, 102, 0.2);
+	--color-errors: #ff4754;
+}
+
+[data-theme="blue"] {
+	--color-wpm: rgba(0, 123, 255, 1);
+	--color-wpm-bg: rgba(0, 123, 255, 0.2);
+	--color-accuracy: rgba(0, 102, 204, 1);
+	--color-accuracy-bg: rgba(0, 102, 204, 0.2);
+	--color-consistency: rgba(0, 76, 153, 1);
+	--color-consistency-bg: rgba(0, 76, 153, 0.2);
+	--color-errors: #004080;
+}
+
+/* Add more themes as needed */
+body.light {
+	--main-color: #ffffff;
+	--bg-color: #f0f0f0;
+	--sub-color: #dddddd;
+	--text-color: #000000;
+}
+
+body.dark {
+	--main-color: #e2b714;
+	--bg-color: #121212;
+	--sub-color: #323437;
+	--text-color: #d1d0c5;
+}
+
+body.blue {
+	--main-color: #1e90ff;
+	--bg-color: #0a192f;
+	--sub-color: #112240;
+	--text-color: #ccd6f6;
+}
+
+body.green {
+	--main-color: #4caf50;
+	--bg-color: #1b2a1f;
+	--sub-color: #2e4d36;
+	--text-color: #d4edda;
+}
+
+body.retro {
+	--main-color: #ffcc00;
+	--bg-color: #2b2a27;
+	--sub-color: #524e4d;
+	--text-color: #f4e8c1;
+}
+
+/* Apply the CSS variables to the body */
+body {
+	background-color: var(--bg-color);
+	color: var(--text-color);
+}
+
+/* Example usage for other elements */
+.theme-switcher button {
+	border-color: var(--main-color);
+	background-color: var(--bg-color);
+	padding: 10px;
+	margin: 5px;
+	border: 1px solid;
+	border-radius: 5px;
+}
+
+.typing-test .text span.last-child::before {
+	background-color: var(--main-color);
+}
+
+.typing-test .text span {
+	color: var(--text-color);
+}
+.typing-test {
+	background-color: var(--sub-color);
+	color: var(--text-color);
+}
+.stats {
+	color: var(--main-color);
+}
