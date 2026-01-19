@@ -67,7 +67,3 @@ rhino-type/
 ---
 
 🦏 **Rhino Type** is a personal project built to explore frontend performance, UI/UX design, and the integration of Firebase services. I’m actively improving it and welcome contributions!
-
----
-
-Let me know if you want badges, contribution guidelines, or a license section added.
